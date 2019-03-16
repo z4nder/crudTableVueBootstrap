@@ -56,6 +56,14 @@
     margin: 10px;
     padding:10px
   }
+  .container {
+    background-color: rgba(65, 160, 57, 0.836);
+  }
+
+  .table-wrapper {
+    padding-top: 20px;
+    padding-bottom: 2px;
+  }
 
 </style>
 

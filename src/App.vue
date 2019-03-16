@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-
-
-      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(65, 160, 57, 0.836);">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
           aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -57,11 +55,11 @@
   }
 
   #nav a.router-link-exact-active {
-    color: #42b983;
+    color:rgba(85, 117, 11, 0.747);
   }
 
   #app {
-    background-color: rgb(179, 211, 187);
+    background-color: rgba(125, 151, 32, 0.747);
   }
 
 </style>
