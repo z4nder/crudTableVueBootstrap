@@ -46,4 +46,3 @@
    background-color: rgba(65, 160, 57, 0.836);
  }
 </style>
-

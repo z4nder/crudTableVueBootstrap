@@ -21,9 +21,10 @@
           <thead>
             <tr>
               <th>Foto</th>
-              <th style="width: 30%;">Nome</th>
+              <th style="width: 25%;">Nome</th>
               <th style="width: 30%;">Data de Nascimento</th>
               <th style="width: 30%;">Telefone</th>
+              <th style="width: 5%;">Editar</th>
             </tr>
           </thead>
           <tbody>
@@ -32,6 +33,8 @@
               <td>Gustavo Alexandre</td>
               <td>22/03/1980</td>
               <td>+55(31) 988029318</td>
+              <td><button type="button" class="btn btn-warning">Editar</button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -64,6 +67,4 @@
     padding-top: 20px;
     padding-bottom: 2px;
   }
-
 </style>
-
