@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Mensagem enviada entre components"/>
+    <HelloWorld msg="ADM Painel"/>
   </div>
 </template>
 
