@@ -1,16 +1,57 @@
 <template>
-  <div class="modalEdit">
-    <h1>{{ msg }}</h1>
-    <Cadastrar/>
+  <div>
+    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+      <b-form-group id="formGroup" label="Nome:" label-for="exampleInput1" description="">
+        <b-form-input id="inputs" type="text" v-model="form.name" required placeholder="Nome e Sobrenome" />
+      </b-form-group>
+
+      <b-form-group id="formGroup" label="Data de Nascimento:" label-for="exampleInput2">
+        <b-form-input id="inputs" type="text" v-model="form.dataNasc" required placeholder="Enter com sua data de nascimento" />
+      </b-form-group>
+
+      <b-form-group id="formGroup" label="Telefone:" label-for="exampleInput2">
+        <b-form-input id="inputs" type="text" v-model="form.number" required placeholder="Telefone dd( ) numero" />
+      </b-form-group>
+    </b-form>
   </div>
 </template>
 
 <script>
+  export default {
+    name: 'ModalEdit',
+    props: {
+      msg: String,
+    },
+    data() {
+      return {
+        form: {
+          name: '',
+          dataNasc: '',
+          number: '',
+        },
+        show: true
+      }
+    },
+    methods: {
+      // Envia objeto ao cadastrar
+      onSubmit(evt) {
+        evt.preventDefault()
+        alert(JSON.stringify(this.form))
+      },
+      // Reseta os campos
+      onReset(evt) {
+        evt.preventDefault()
+        /* Reset our form values */
+        this.form.name = ''
+        this.form.dataNasc = ''
+        this.form.number = ''
+        /* Trick to reset/clear native browser form validation state */
+        this.show = false
+        this.$nextTick(() => {
+          this.show = true
+        })
+      }
+    }
+  }
 
-export default {
-  name: 'ModalEdit',
-  props: {
-    msg: String,
-  },
-};
 </script>

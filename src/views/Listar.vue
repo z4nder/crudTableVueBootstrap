@@ -39,37 +39,39 @@
 
                   <!-- Modal Component -->
                   <b-modal id="modal1" title="BootstrapVue">
-                   <ModalEdit msg="Modal Msg"/>
+                    <ModalEdit msg="Modal Msg" />
                   </b-modal>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-end">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Próxima</a>
-            </li>
-          </ul>
-        </nav>
+        <div class="overflow-auto">
+          <div class="mt-3 text-right">
+            <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="right" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import ModalEdit from './modalEdit';
+  import ModalEdit from './modalEdit';
 
-export default {
-  components: {
-    ModalEdit,
-  },
-}
+  export default {
+    components: {
+      ModalEdit,
+    },
+    data() {
+      return {
+        rows: 30,
+        currentPage: 3,
+        perPage: 10,
+      }
+    }
+  }
+
 </script>
 
 
