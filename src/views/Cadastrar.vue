@@ -1,5 +1,5 @@
 <template>
-  <div id="container">
+  <div class="Cadastrar">
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group
         id="formGroup"

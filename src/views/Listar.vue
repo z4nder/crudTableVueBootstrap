@@ -17,7 +17,7 @@
             </div>
           </div>
         </div>
-        <table class="table table-striped">
+        <table class="table table-responsive">
           <thead>
             <tr>
               <th>Foto</th>
@@ -39,7 +39,7 @@
 
                   <!-- Modal Component -->
                   <b-modal id="modal1" title="BootstrapVue">
-                    <p class="my-4">Hello from modal!</p>
+                   <ModalEdit msg="Modal Msg"/>
                   </b-modal>
                 </div>
               </td>
@@ -61,6 +61,16 @@
     </div>
   </div>
 </template>
+
+<script>
+import ModalEdit from './modalEdit';
+
+export default {
+  components: {
+    ModalEdit,
+  },
+}
+</script>
 
 
 
