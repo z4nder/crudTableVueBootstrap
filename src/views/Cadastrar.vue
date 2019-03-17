@@ -1,48 +1,90 @@
 <template>
-  <div class="cadastrar">
-   <form>
-  <div class="form-group row">
-    <label for="inputEmail3" class="col-sm-3 col-form-label">Nome:</label>
-    <div class="col-sm-6">
-      <input type="text" class="form-control" id="inputEmail1" placeholder="Nome">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-3 col-form-label">Data de Nascimento:</label>
-    <div class="col-sm-6">
-      <input type="text" class="form-control" id="inputPassword3" placeholder="Data de Nascimento">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-3 col-form-label">Telefone:</label>
-    <div class="col-sm-6">
-      <input type="text" class="form-control" id="inputPassword2" placeholder="Telefone">
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-12">
-      <button type="submit" class="btn btn-success">Cadastrar</button>
-      <button type="button" class="btn btn-danger">Cancelar</button>
-    </div>
-  </div>
-</form>
+  <div id="container">
+    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+      <b-form-group
+        id="formGroup"
+        label="Nome:"
+        label-for="exampleInput1"
+        description=""
+      >
+        <b-form-input
+          id="inputs"
+          type="text"
+          v-model="form.name"
+          required
+          placeholder="Nome e Sobrenome" />
+      </b-form-group>
+
+      <b-form-group id="formGroup" label="Data de Nascimento:" label-for="exampleInput2">
+        <b-form-input
+          id="inputs"
+          type="text"
+          v-model="form.dataNasc"
+          required
+          placeholder="Enter com sua data de nascimento" />
+      </b-form-group>
+
+      <b-form-group id="formGroup" label="Telefone:" label-for="exampleInput2">
+        <b-form-input
+          id="inputs"
+          type="text"
+          v-model="form.number"
+          required
+          placeholder="Telefone dd( ) numero" />
+      </b-form-group>
+
+      <b-button type="submit" variant="primary">Cadastrar</b-button>
+      <b-button type="reset" variant="danger">Cancelar</b-button>
+    </b-form>
   </div>
 </template>
 
+
+<script>
+  export default {
+    data() {
+      return {
+        form: {
+          name: '',
+          dataNasc: '',
+          number: '',
+        },
+        show: true
+      }
+    },
+    methods: {
+      // Envia objeto ao cadastrar
+      onSubmit(evt) {
+        evt.preventDefault()
+        alert(JSON.stringify(this.form))
+      },
+      // Reseta os campos
+      onReset(evt) {
+        evt.preventDefault()
+        /* Reset our form values */
+        this.form.name = ''
+        this.form.dataNasc = ''
+        this.form.number = ''
+        /* Trick to reset/clear native browser form validation state */
+        this.show = false
+        this.$nextTick(() => {
+          this.show = true
+        })
+      }
+    }
+  }
+</script>
+
 <style>
- .cadastrar {
-   margin: 20px;
- }
 
- .btn {
-   margin-bottom: 20px;
-   margin-left: 10px;
+#inputs {
+  width: 30%;
+  text-align: center;
+  display: inline-block;
+}
 
- }
+#container {
+  padding: 20px;
+}
 
- .col-form-label {
-   padding-top: 10px;
-   padding-bottom: 10px;
-   background-color: rgba(65, 160, 57, 0.836);
- }
 </style>

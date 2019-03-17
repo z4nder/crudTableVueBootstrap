@@ -33,32 +33,43 @@
               <td>Gustavo Alexandre</td>
               <td>22/03/1980</td>
               <td>+55(31) 988029318</td>
-              <td><button type="button" class="btn btn-warning">Editar</button>
+              <td>
+                <div>
+                  <b-button type="button" class="btn btn-warning" v-b-modal.modal1>Editar</b-button>
+
+                  <!-- Modal Component -->
+                  <b-modal id="modal1" title="BootstrapVue">
+                    <p class="my-4">Hello from modal!</p>
+                  </b-modal>
+                </div>
               </td>
             </tr>
           </tbody>
         </table>
         <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-end">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Próxima</a>
-    </li>
-  </ul>
-</nav>
+          <ul class="pagination justify-content-end">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Próxima</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
 </template>
 
+
+
 <style>
   .listar {
     margin: 10px;
-    padding:10px
+    padding: 10px
   }
+
   .container {
     background-color: rgba(65, 160, 57, 0.836);
   }
@@ -67,4 +78,5 @@
     padding-top: 20px;
     padding-bottom: 2px;
   }
+
 </style>
