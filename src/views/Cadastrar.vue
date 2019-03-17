@@ -41,6 +41,7 @@
 
 
 <script>
+ import Crud from '../services/crud.js'
   export default {
     data() {
       return {
@@ -54,9 +55,12 @@
     },
     methods: {
       // Envia objeto ao cadastrar
-      onSubmit(evt) {
+      async onSubmit(evt) {
         evt.preventDefault()
-        alert(JSON.stringify(this.form))
+        //alert(JSON.stringify(this.form))
+        alert('Salvo com sucesso!')
+        const response = await Crud.create(this.form)
+        return response;
       },
       // Reseta os campos
       onReset(evt) {
