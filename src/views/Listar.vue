@@ -28,11 +28,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr v-for="clients of clients" :key="clients._id">
               <td>Foto</td>
-              <td>Gustavo Alexandre</td>
-              <td>22/03/1980</td>
-              <td>+55(31) 988029318</td>
+              <td>{{ clients.name }}</td>
+              <td>{{ clients.dataNasc }}</td>
+              <td>{{ clients.number }}</td>
               <td>
                 <div>
                   <b-button type="button" class="btn btn-warning" v-b-modal.modal1>Editar</b-button>
@@ -48,7 +48,8 @@
         </table>
         <div class="overflow-auto">
           <div class="mt-3 text-right">
-            <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="right" />
+            <b-pagination v-model="currentPage" :total-rows="rows"
+              :per-page="perPage" align="right" />
           </div>
         </div>
       </div>
@@ -58,17 +59,43 @@
 
 <script>
   import ModalEdit from './modalEdit';
-
+  import Crud from '../services/crud.js'
   export default {
     components: {
       ModalEdit,
     },
     data() {
       return {
-        rows: 30,
-        currentPage: 3,
+        rows: 40,
+        currentPage: 1,
         perPage: 10,
+        clients: [],
       }
+    },
+    mounted() {
+      this.list()
+
+    },
+    methods: {
+      async list() {
+        try {
+          const response = await Crud.list()
+          this.rows = response.data.pages * 10
+          this.clients = response.data.docs; //Pegas os clients que estão em docs
+        } catch (error) {
+          alert(error.response.data.message)
+          console.log(error.response.data)
+        }
+
+      },
+    },
+    watch: {
+      currentPage: async function (val) {
+        const response = await Crud.list(val)
+        this.clients = response.data.docs;
+
+        return response;
+      },
     }
   }
 
