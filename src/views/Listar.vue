@@ -10,8 +10,11 @@
             <div class="col-sm-6">
               <div class="search-box">
                 <div class="input-group">
-                  <input type="text" id="search" class="form-control" placeholder="Proucurar por nome">
-                  <img src="../assets/search.png" width="30" height="30" class="d-inline-block align-top">
+                  <input v-model="client.name" type="text" id="search" class="form-control" placeholder="Proucurar por nome">
+                  <div id="imgBtn" @click="searchByName()">
+                    <img src="../assets/search.png" width="30" height="30" class="d-inline-block align-top">
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -66,6 +69,8 @@
     },
     data() {
       return {
+        client: {
+        name: 'Gust',},
         rows: 40,
         currentPage: 1,
         perPage: 10,
@@ -88,12 +93,22 @@
         }
 
       },
+      async searchByName() {
+        try {
+          const response = await Crud.listByName(1, this.client.name)
+          this.rows = response.data.pages * 10
+          this.clients = response.data.docs; //Pegas os clients que estão em docs
+          this.clien.name = "";
+        } catch (error) {
+          alert(error.response.data.message)
+          console.log(error.response.data)
+        }
+      }
     },
     watch: {
       currentPage: async function (val) {
         const response = await Crud.list(val)
         this.clients = response.data.docs;
-
         return response;
       },
     }
@@ -118,4 +133,12 @@
     padding-bottom: 2px;
   }
 
+  #imgBtn {
+    padding: 10px;
+  }
+
+   #imgBtn:active {
+    background-color:#42b983;
+    transition: cubic-bezier(0.25, 0.46, 0.45, 0.94)
+   }
 </style>

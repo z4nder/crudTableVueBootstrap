@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <HelloWorld msg="ADM Painel"/>
+    <HelloWorld msg="Bem vindo ao ADM Painel"/>
+    <h5>Desenvolvido por: Gustavo Alexandre</h5>
+    <h5>gusttavo212</h5>
   </div>
 </template>
 

@@ -1,8 +1,12 @@
 import api from './api';
 
 export default {
-  async list(page = 1, limit = 5) {
-    const resp = await api.get(`/client?page=${page}&limit=${limit}`);
+  async list(page = 1) {
+    const resp = await api.get(`/client?page=${page}`);
+    return resp;
+  },
+  async listByName(page = 1, name) {
+    const resp = await api.get(`/client?page=${page}&name=${name}`);
     return resp;
   },
   async create(item) {
