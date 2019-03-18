@@ -10,7 +10,8 @@
             <div class="col-sm-6">
               <div class="search-box">
                 <div class="input-group">
-                  <input v-model="inputName" type="text" id="search" class="form-control" placeholder="Proucurar por nome">
+                  <input v-model="inputName" type="text" id="search" class="form-control"
+                    placeholder="Proucurar por nome">
                   <div id="imgBtn" @click="searchByName()">
                     <img src="../assets/search.png" width="30" height="30" class="d-inline-block align-top">
                   </div>
@@ -38,12 +39,9 @@
               <td>{{ clients.number }}</td>
               <td>
                 <div>
-                  <b-button type="button" class="btn btn-warning" v-b-modal.modal1>Editar</b-button>
-
-                  <!-- Modal Component -->
-                  <b-modal id="modal1" title="BootstrapVue">
-                    <ModalEdit msg="Modal Msg" />
-                  </b-modal>
+                   <router-link to="/editar">
+                   <b-button type="button" @click="editItem(clients)" class="btn btn-warning">Editar</b-button>
+                   </router-link>
                 </div>
               </td>
             </tr>
@@ -51,8 +49,7 @@
         </table>
         <div class="overflow-auto">
           <div class="mt-3 text-right">
-            <b-pagination v-model="currentPage" :total-rows="rows"
-              :per-page="perPage" align="right" />
+            <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="right" />
           </div>
         </div>
       </div>
@@ -62,6 +59,7 @@
 
 <script>
   import ModalEdit from './modalEdit';
+  import ClientEvent from '../components/clientsEvent.js'
   import Crud from '../services/crud.js'
   export default {
     components: {
@@ -74,6 +72,7 @@
         currentPage: 1,
         perPage: 10,
         clients: [],
+        editClient: ''
       }
     },
     mounted() {
@@ -102,17 +101,20 @@
           alert(error.response.data.message)
           console.log(error.response.data)
         }
+      },
+      async editItem(item) {
+        ClientEvent.$emit('edit:Item', item)
       }
     },
     watch: {
       currentPage: async function (val) {
-       this.list(val)
+        this.list(val)
       },
       // Se tiver algum valor no input proucure com ele se não liste todos
-       inputName: async function (val) {
-        if(val === "") {
+      inputName: async function (val) {
+        if (val === "") {
           this.list()
-        }else{
+        } else {
           this.searchByName(val)
         }
       },
@@ -142,8 +144,9 @@
     padding: 10px;
   }
 
-   #imgBtn:active {
-    background-color:#42b983;
+  #imgBtn:active {
+    background-color: #42b983;
     transition: cubic-bezier(0.25, 0.46, 0.45, 0.94)
-   }
+  }
+
 </style>

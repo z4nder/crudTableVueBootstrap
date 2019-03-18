@@ -2,7 +2,7 @@
   <div>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group id="formGroup" label="Nome:" label-for="exampleInput1" description="">
-        <b-form-input id="inputs" type="text" v-model="form.name" required placeholder="Nome e Sobrenome" />
+        <b-form-input id="inputs" type="text" v-model="form.name" required placeholder="Nome"/>
       </b-form-group>
 
       <b-form-group id="formGroup" label="Data de Nascimento:" label-for="exampleInput2">
@@ -12,6 +12,7 @@
       <b-form-group id="formGroup" label="Telefone:" label-for="exampleInput2">
         <b-form-input id="inputs" type="text" v-model="form.number" required placeholder="Telefone dd( ) numero" />
       </b-form-group>
+      <b-button type="submit" variant="primary">Alterar</b-button>
     </b-form>
   </div>
 </template>

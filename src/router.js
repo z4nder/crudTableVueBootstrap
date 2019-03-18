@@ -21,5 +21,10 @@ export default new Router({
       name: 'cadastrar',
       component: () => import('./views/Cadastrar.vue'),
     },
+    {
+      path: '/editar',
+      name: 'editar',
+      component: () => import('./views/modalEdit.vue'),
+    },
   ],
 });
