@@ -58,7 +58,6 @@
 </template>
 
 <script>
-  import ModalEdit from './modalEdit';
   import ClientEvent from '../components/clientsEvent.js'
   import Crud from '../services/crud.js'
   export default {

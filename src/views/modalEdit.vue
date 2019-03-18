@@ -2,7 +2,7 @@
   <div>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group id="formGroup" label="Nome:" label-for="exampleInput1" description="">
-        <b-form-input id="inputs" type="text" v-model="form.name" required placeholder="Nome"/>
+        <b-form-input id="inputs" type="text" v-model="form.name" required placeholder="Nome" />
       </b-form-group>
 
       <b-form-group id="formGroup" label="Data de Nascimento:" label-for="exampleInput2">
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+  import ClientEvent from '../components/clientsEvent.js'
   export default {
     name: 'ModalEdit',
     props: {
@@ -25,18 +26,22 @@
     },
     data() {
       return {
-        form: {
-          name: '',
-          dataNasc: '',
-          number: '',
-        },
-        show: true
+        form: [],
+        show: true,
+        client: []
       }
+    },
+    mounted() {
+      ClientEvent.$on('edit:Item', function (item) {
+        this.client = item;
+        console.log('Client', this.client.name)
+      })
     },
     methods: {
       // Envia objeto ao cadastrar
       onSubmit(evt) {
         evt.preventDefault()
+        this.form = this.client
         alert(JSON.stringify(this.form))
       },
       // Reseta os campos
@@ -51,7 +56,16 @@
         this.$nextTick(() => {
           this.show = true
         })
-      }
+      },
+        async list() {
+        try {
+          this.clients = response.data.docs; //Pegas os clients que estão em docs
+        } catch (error) {
+          alert(error.response.data.message)
+          console.log(error.response.data)
+        }
+
+      },
     }
   }
 
