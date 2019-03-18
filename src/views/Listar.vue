@@ -81,9 +81,9 @@
 
     },
     methods: {
-      async list() {
+      async list(page) {
         try {
-          const response = await Crud.list()
+          const response = await Crud.list(page)
           this.rows = response.data.pages * 10
           this.clients = response.data.docs; //Pegas os clients que estão em docs
         } catch (error) {
@@ -106,10 +106,9 @@
     },
     watch: {
       currentPage: async function (val) {
-        const response = await Crud.list(val)
-        this.clients = response.data.docs;
-        return response;
+       this.list(val)
       },
+      // Se tiver algum valor no input proucure com ele se não liste todos
        inputName: async function (val) {
         if(val === "") {
           this.list()
