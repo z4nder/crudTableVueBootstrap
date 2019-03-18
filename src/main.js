@@ -6,7 +6,11 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css';
 // eslint-disable-next-line import/order
 import BootstrapVue from 'bootstrap-vue';
+// eslint-disable-next-line import/order
+import VueTheMask from 'vue-the-mask';
 
+Vue.use(VueTheMask);
+Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 
 

@@ -10,7 +10,7 @@
             <div class="col-sm-6">
               <div class="search-box">
                 <div class="input-group">
-                  <input v-model="client.name" type="text" id="search" class="form-control" placeholder="Proucurar por nome">
+                  <input v-model="inputName" type="text" id="search" class="form-control" placeholder="Proucurar por nome">
                   <div id="imgBtn" @click="searchByName()">
                     <img src="../assets/search.png" width="30" height="30" class="d-inline-block align-top">
                   </div>
@@ -69,8 +69,7 @@
     },
     data() {
       return {
-        client: {
-        name: 'Gust',},
+        inputName: '',
         rows: 40,
         currentPage: 1,
         perPage: 10,
@@ -95,10 +94,10 @@
       },
       async searchByName() {
         try {
-          const response = await Crud.listByName(1, this.client.name)
+          const response = await Crud.listByName(1, this.inputName)
           this.rows = response.data.pages * 10
           this.clients = response.data.docs; //Pegas os clients que estão em docs
-          this.clien.name = "";
+
         } catch (error) {
           alert(error.response.data.message)
           console.log(error.response.data)
@@ -110,6 +109,13 @@
         const response = await Crud.list(val)
         this.clients = response.data.docs;
         return response;
+      },
+       inputName: async function (val) {
+        if(val === "") {
+          this.list()
+        }else{
+          this.searchByName(val)
+        }
       },
     }
   }

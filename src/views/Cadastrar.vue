@@ -21,7 +21,10 @@
           type="text"
           v-model="form.dataNasc"
           required
-          placeholder="Enter com sua data de nascimento" />
+          placeholder="Enter com sua data de nascimento"
+          v-mask="'##/##/####'"
+          :masked="masked"
+            />
       </b-form-group>
 
       <b-form-group id="formGroup" label="Telefone:" label-for="exampleInput2">
@@ -30,7 +33,9 @@
           type="text"
           v-model="form.number"
           required
-          placeholder="Telefone dd( ) numero" />
+          placeholder="Telefone dd( ) numero"
+          v-mask="'+55 (##) ####-####'"
+          :masked="masked" />
       </b-form-group>
 
       <b-button type="submit" variant="primary">Cadastrar</b-button>
