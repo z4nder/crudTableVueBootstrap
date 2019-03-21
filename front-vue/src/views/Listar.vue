@@ -61,9 +61,7 @@
   import ClientEvent from '../components/clientsEvent.js'
   import Crud from '../services/crud.js'
   export default {
-    components: {
-      ModalEdit,
-    },
+
     data() {
       return {
         inputName: '',
@@ -101,7 +99,7 @@
           console.log(error.response.data)
         }
       },
-      async editItem(item) {
+      editItem(item) {
         ClientEvent.$emit('edit:Item', item)
       }
     },
